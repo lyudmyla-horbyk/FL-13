@@ -1,0 +1,250 @@
+@mixin button {
+  background-color: $bgc-header-button;
+  padding: 16px 54px 16px 54px;
+  color: map-get($colors, white);
+  font-weight: bold;
+  text-align: center;
+  font-size: 22px;
+  font-family: "Source Sans Pro", sans-serif;
+  border: none;
+}
+@mixin link {
+  font-family: "Hind", sans-serif;
+}
+%landing-logo {
+  display: flex;
+  align-items: center;
+  font-family: $font-family-header-text;
+  font-size: 27px;
+  p {
+    font-weight: bold;
+    padding-left: 19px;
+    margin-top: 22px;
+  }
+  span {
+    display: block;
+    font-weight: normal;
+    font-size: 14px;
+    text-align: center;
+  }
+  img {
+    height: 54px;
+    width: 54px;
+  }
+}
+$colors: (
+  gray: #c6c5c5,
+  white: #fff,
+);
+body {
+  margin: 0;
+  background-color: $background-color-body;
+}
+.header {
+  background: $header-background;
+  height: 900px;
+  width: 100%;
+  border-radius: 0 0 40% 0 / 40%;
+  background-size: cover;
+  background-position: 0 center;
+}
+.header-wrap {
+  padding-left: 193px;
+  .landing-logo {
+    @extend %landing-logo;
+    p {
+      color: $header-text-color;
+    }
+  }
+  .header_heading {
+    font-weight: bold;
+    font-size: 90px;
+    font-family: "Source Sans Pro", sans-serif;
+    margin-top: 51px;
+    margin-bottom: 2px;
+    color: $header-text-color;
+    width: 611px;
+    position: relative;
+    z-index: 1;
+    line-height: 1;
+    &::after {
+      content: "";
+      width: 386px;
+      display: block;
+      height: 61px;
+      background-color: $background-color-word;
+      position: absolute;
+      top: 117px;
+      left: 0;
+      z-index: -1;
+    }
+  }
+  .header_text {
+    color: $header-text-color;
+    font-family: $font-family-header-text;
+    width: 1000px;
+    white-space: pre-line;
+    margin-bottom: 73px;
+    margin-top: 44px;
+    font-size: 21px;
+    line-height: 1.5;
+  }
+  .header_button {
+    @include button();
+  }
+  .login {
+    @include link();
+    color: map-get($colors, white);
+    padding-left: 186px;
+    font-size: 24px;
+  }
+}
+.section {
+  position: relative;
+}
+.section_text {
+  padding-top: 48px;
+  color: $header-text-color;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 53px;
+  width: 529px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  &::after {
+    content: "";
+    width: 234px;
+    height: 64px;
+    position: absolute;
+    top: 42px;
+    right: 22px;
+    z-index: -1;
+    background-color: $background-color-word;
+  }
+}
+.section_card_wrap {
+  margin-top: 45px;
+  margin-bottom: 261px;
+}
+.section_card {
+  width: 1084px;
+  margin: 0 auto;
+  background-color: $bgc-section-card;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  padding: 25px;
+  border-radius: 7.2px;
+  &_heading {
+    color: map-get($colors, white);
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 30px;
+    margin-bottom: 0;
+    margin-top: 6px;
+  }
+  &_text {
+    color: $color-section-card-text;
+    font-family: $font-family-header-text;
+    line-height: 1.45;
+    font-size: 21px;
+    text-align: justify;
+    margin-top: 27px;
+    margin-bottom: 13px;
+  }
+  &_img {
+    object-fit: cover;
+    &[alt="experts"] {
+      width: 371px;
+      height: 294px;
+    }
+    &[alt="content formats"] {
+      width: 357px;
+      height: 294px;
+    }
+    &[alt="certificate"] {
+      width: 397px;
+      height: 294px;
+    }
+  }
+  .section_link {
+    @include link();
+    color: $color-section-card-text;
+    font-size: 19px;
+  }
+  &_right_container {
+    width: 510px;
+    text-align: center;
+    margin: 0 auto;
+  }
+}
+.section_banner {
+  height: 178px;
+  width: 1198px;
+  background: $bgc-section-banner;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  bottom: -353px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 5px;
+  &_button {
+    @include button();
+  }
+  &_heading {
+    color: $header-text-color;
+    font-size: 36px;
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: bold;
+    position: relative;
+    z-index: 1;
+    width: 522px;
+    margin-top: 0;
+    margin-bottom: 0;
+    &::after {
+      content: "";
+      width: 81px;
+      height: 61px;
+      background-color: $background-color-word;
+      position: absolute;
+      top: -17px;
+      left: 143px;
+      z-index: -1;
+    }
+  }
+  &_text {
+    color: map-get($colors, gray);
+    font-family: $font-family-header-text;
+    font-size: 20px;
+  }
+}
+.footer {
+  background-color: $bgc-section-card;
+  &-wrap {
+    height: 305px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 49px;
+  }
+  &_text {
+    color: $color-section-card-text;
+    font-family: $font-family-header-text;
+    width: 403px;
+    font-size: 18px;
+    line-height: 1.4;
+  }
+  &-cr {
+    color: $color-section-card-text;
+    font-family: $font-family-header-text;
+    font-size: 19px;
+  }
+  .landing-logo {
+    @extend %landing-logo;
+    p {
+      color: map-get($colors, gray);
+    }
+  }
+}
