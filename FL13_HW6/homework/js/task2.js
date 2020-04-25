@@ -1,4 +1,4 @@
-const NUMBER_TWO = 2;
+const DIVIDER = 2;
 
 let word = prompt('Word: ');
 if (typeof word === 'string') {
@@ -8,8 +8,8 @@ if (word === null || word === '') {
     alert('Invalid value');
 } else {
     let wordLength = word.length;
-    let middle = Math.floor(wordLength / NUMBER_TWO);
-    if (wordLength % NUMBER_TWO === 0) {
+    let middle = Math.floor(wordLength / DIVIDER);
+    if (wordLength % DIVIDER === 0) {
         alert('Middle: ' + word[middle - 1] + word[middle]);
     } else {
         alert('Middle: ' + word[middle]);
