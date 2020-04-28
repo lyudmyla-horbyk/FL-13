@@ -16,7 +16,6 @@ if (confirmWindow === false) {
     isWon = false
     attemptPrize = maxGamePrize;
     const secretNumber = Math.floor(Math.random() * endNumber);
-    console.log(secretNumber)
     for (let i = 3; i > 0; i--) {
       const number = Number(prompt(`Choose a roulette pocket number from ${startNumber} to ${endNumber}` +
         '\nAttempts left: ' + i +
