@@ -1,3 +1,7 @@
+const PRIZE_INCREASE_PER_ROUND = 2;
+const PRIZE_REDUCE_PER_ATTEMPT = 2;
+const POCKET_INCREASE_PER_ROUND = 5;
+
 let maxGamePrize = 100;
 let userPrize = 0;
 let startNumber = 0;
@@ -5,8 +9,6 @@ let endNumber = 5;
 let isWon;
 let attemptPrize;
 let wantsToQuit = false;
-let numberTwo = 2;
-let numberFive = 5;
 
 const confirmWindow = confirm('Do you want to play a game?');
 if (confirmWindow === false) {
@@ -24,12 +26,12 @@ if (confirmWindow === false) {
       if (number === secretNumber) {
         isWon = true;
         userPrize += attemptPrize;
-        maxGamePrize *= numberTwo;
-        endNumber += numberFive;
+        maxGamePrize *= PRIZE_INCREASE_PER_ROUND;
+        endNumber += POCKET_INCREASE_PER_ROUND;
         wantsToQuit = confirm(`Congratulation, you won! Your prize is: ${userPrize}$. Do you want to continue?`);
         break
       } else {
-        attemptPrize /= numberTwo;
+        attemptPrize /= PRIZE_REDUCE_PER_ATTEMPT;
       }
     }
   } while (isWon && wantsToQuit);
