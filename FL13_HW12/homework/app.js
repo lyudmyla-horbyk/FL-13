@@ -18,27 +18,38 @@ function createBooksList(arr1) {
     a.className = 'img-book'
     a.append(arr1[i].bookName);
     a.setAttribute('href', `#preview`);
-    a.addEventListener('click', function () {
+    a.addEventListener('click', function (e) {
+      e.preventDefault()
       console.log('Info about book!');
-      history.pushState({ id: arr1[i].uid }, 'Priview Book', `?id=${arr1[i].uid}#preview`);
+      const state = { id: arr1[i].uid }
+      history.pushState(state, 'Priview Book', `?id=${arr1[i].uid}#preview`);
+      dispatchEvent(new PopStateEvent('popstate', { state }));
     })
     let editBook = document.createElement('button');
     editBook.className = 'edit-book';
     editBook.append('Edit')
+    editBook.addEventListener('click', function (e) {
+      e.preventDefault()
+      const state = { id: arr1[i].uid }
+      history.pushState(state, 'Edit Book', `?id=${arr1[i].uid}#edit`);
+      dispatchEvent(new PopStateEvent('popstate', { state }));
+    })
     li.append(a);
     li.append(editBook);
     ul.append(li);
-    wrapperBooks.append(ul);
   }
   let addBook = document.createElement('button');
   addBook.append('Add');
   addBook.className = 'add-book';
-  addBook.addEventListener('click', function () {
-    console.log('Add book');
+  addBook.addEventListener('click', function (e) {
+    e.preventDefault()
+
+    history.pushState({ id: null }, 'Add New Book', window.location.pathname + '#add');
+    dispatchEvent(new PopStateEvent('popstate', { state: {} }));
   })
   ul.append(addBook);
 
-  return wrapperBooks;
+  return ul;
 }
 
 function createPreview(book) {
@@ -94,7 +105,10 @@ function editBook(book) {
   let cancelButton = document.createElement('button');
   cancelButton.append('Cancel');
   cancelButton.addEventListener('click', function () {
-    prompt('Discard changes?', '');
+    let answer = confirm('Discard changes?');
+    if (answer === true) {
+      history.back();
+    }
   })
   let saveButton = document.createElement('button');
   saveButton.append('Save');
@@ -145,6 +159,15 @@ function addBook() {
   let saveButton = document.createElement('button');
   saveButton.append('Save');
   saveButton.addEventListener('click', function () {
+    let newBook = {
+      bookName: '',
+      author: '',
+      img: '',
+      plot: '',
+      uid: ''
+
+    };
+    data.push();
     setTimeout("alert('Book successfully updated')", 300);
   })
   form.append(labelBookName);
@@ -170,17 +193,21 @@ function dynamicSection(root, book) {
   root.append(addBook(book[0]));
 }*/
 
-window.onpopstate = function (event) {
-  alert(`location: ${document.location}, state: ${JSON.stringify(event.state)}`)
+window.onpopstate = function () {
   const parsedUrl = new URL(window.location.href);
   console.log(parsedUrl.hash);
   wrapperPreview.innerHTML = ''
   if (parsedUrl.hash === '#preview') {
     const id = parsedUrl.searchParams.get('id');
-    const book = data.find(element => element.uid === Number(id))
-    wrapperPreview.append(createPreview(book))
-  } else if (parsedUrl.hash !== '#preview') {
-    return 'hejgew';
+    const book = data.find(element => element.uid === Number(id));
+    wrapperPreview.append(createPreview(book));
+  } else if (parsedUrl.hash === '#edit') {
+    console.log('ggdg');
+    const id = parsedUrl.searchParams.get('id');
+    const book = data.find(element => element.uid === Number(id));
+    wrapperPreview.append(editBook(book));
+  } else if (parsedUrl.hash === '#add') {
+    wrapperPreview.append(addBook());
   }
 }
 
