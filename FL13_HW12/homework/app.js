@@ -160,14 +160,13 @@ function addBook() {
   saveButton.append('Save');
   saveButton.addEventListener('click', function () {
     let newBook = {
-      bookName: '',
+      bookName: inputBookName.getAttribute('value'),
       author: '',
       img: '',
       plot: '',
       uid: ''
-
     };
-    data.push();
+    data.push(newBook);
     setTimeout("alert('Book successfully updated')", 300);
   })
   form.append(labelBookName);
