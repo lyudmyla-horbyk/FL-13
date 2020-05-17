@@ -161,10 +161,10 @@ function addBook() {
   saveButton.addEventListener('click', function () {
     let newBook = {
       bookName: inputBookName.getAttribute('value'),
-      author: '',
-      img: '',
-      plot: '',
-      uid: ''
+      author: inputAuthor.getAttribute('value'),
+      img: inputimgUrl.getAttribute('value'),
+      plot: inputPlot.getAttribute('value'),
+      uid: Math.max(...data.map(e => e.uid)) + 1
     };
     data.push(newBook);
     setTimeout("alert('Book successfully updated')", 300);
