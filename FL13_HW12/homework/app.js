@@ -112,8 +112,18 @@ function editBook(book) {
   })
   let saveButton = document.createElement('button');
   saveButton.append('Save');
-  saveButton.addEventListener('click', function () {
-    setTimeout("alert('Book successfully updated')", 300);
+  saveButton.addEventListener('click', function (e) {
+    e.preventDefault();
+    book.bookName = inputBookName.value;
+    book.author = inputAuthor.value;
+    book.img = inputimgUrl.value;
+    book.plot = inputPlot.value;
+    const state = { id: book.uid };
+    history.pushState(state, 'Preview Book', `?id=${book.uid}#preview`);
+    dispatchEvent(new PopStateEvent('popstate', { state }));
+    editableBooks(wrapperBooks, data);
+    const timeNumber = 300;
+    setTimeout("alert('Book successfully updated')", timeNumber);
   })
   form.append(labelBookName);
   form.append(inputBookName)
@@ -154,20 +164,30 @@ function addBook() {
   let cancelButton = document.createElement('button');
   cancelButton.append('Cancel');
   cancelButton.addEventListener('click', function () {
-    prompt('Discard changes?', '');
+    let answer = confirm('Discard changes?');
+    if (answer === true) {
+      history.back();
+    }
   })
   let saveButton = document.createElement('button');
   saveButton.append('Save');
-  saveButton.addEventListener('click', function () {
+  saveButton.addEventListener('click', function (e) {
+    e.preventDefault();
+    const newUid = Math.max(...data.map(e => e.uid)) + 1;
     let newBook = {
-      bookName: inputBookName.getAttribute('value'),
-      author: inputAuthor.getAttribute('value'),
-      img: inputimgUrl.getAttribute('value'),
-      plot: inputPlot.getAttribute('value'),
-      uid: Math.max(...data.map(e => e.uid)) + 1
+      bookName: inputBookName.value,
+      author: inputAuthor.value,
+      img: inputimgUrl.value,
+      plot: inputPlot.value,
+      uid: newUid
     };
     data.push(newBook);
-    setTimeout("alert('Book successfully updated')", 300);
+    const state = { id: newUid };
+    history.pushState(state, 'Preview Book', `?id=${newUid}#preview`);
+    dispatchEvent(new PopStateEvent('popstate', { state }));
+    editableBooks(wrapperBooks, data);
+    let timeNumber = 300;
+    setTimeout("alert('Book successfully added')", timeNumber);
   })
   form.append(labelBookName);
   form.append(inputBookName)
@@ -183,14 +203,9 @@ function addBook() {
 }
 
 function editableBooks(root, arr1) {
+  root.innerHTML = ''
   root.append(createBooksList(arr1));
 }
-
-/*
-function dynamicSection(root, book) {
-  root.append(editBook(book[0]));
-  root.append(addBook(book[0]));
-}*/
 
 window.onpopstate = function () {
   const parsedUrl = new URL(window.location.href);
@@ -211,4 +226,3 @@ window.onpopstate = function () {
 }
 
 editableBooks(wrapperBooks, data);
-// dynamicSection(root, data);
