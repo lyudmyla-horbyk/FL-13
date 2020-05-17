@@ -1,0 +1,70 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-family:  Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#root{
+display: flex;
+}
+
+li{
+  list-style: none;
+  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+}
+button{
+  display: block;
+   border: 1px solid orange;
+   background-color: white;
+   font-size: 13px;
+   cursor: pointer;
+   padding: 10px 30px 10px 30px;
+}
+
+label{
+display: block;
+}
+
+input{
+  margin-bottom: 20px;
+}
+
+.img-book{
+    cursor: pointer;
+}
+
+.add-book{
+    padding: 10px 30px 10px 30px;
+}
+
+.add-book:hover{
+    background-color: #fff0b3;
+}
+
+.author-book{
+  font-style: italic;
+  color: gray;
+}
+
+.edit-book{
+  padding: 10px 20px 10px 20px;
+  margin-left: 20px;
+}
+
+.edit-book:hover{
+  background-color: #ffff99;
+}
+
+.preview-block{
+  width: 50%;
+}
+
+.form{
+  width: 30%;
+}
