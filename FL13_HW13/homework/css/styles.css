@@ -2,3 +2,6 @@ button.header-presentation__button,
 button.footer-button {
   background-color: #ff7f50;
 }
+.card-img-top {
+  z-index: 1;
+}
