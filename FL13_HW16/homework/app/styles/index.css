@@ -1,0 +1,71 @@
+.heading{
+    font-style: italic;
+}
+
+.wrapper{
+    display: flex;
+}
+
+input{
+    padding: 10px;
+    border: 2px solid pink;
+    margin-right: 15px;
+    font-size: 15px;
+}
+
+.add-user-button{
+    background-color:pink;
+    color: black;
+    border: none;
+    font-size: 15px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.add-user-button:disabled{
+    background-color: #f2f2f2;
+    color: black;
+    cursor: default;
+}
+
+.table{
+    margin-top: 22px;
+}
+
+.table-header{
+    background-color: pink;
+    color: black;
+    font-size: 15px;
+    padding: 10px;
+    font-style: italic;
+}
+
+.table-data{
+    border: 1px solid black;
+    padding: 10px;
+    border-color: pink;
+}
+
+.update-button, .delete-button{
+    background-color:pink;
+    color: black;
+    border: none;
+    font-size: 15px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.update-button:disabled, 
+.delete-button:disabled{
+    background-color: #f2f2f2;
+    color: black;
+    cursor: default;
+}
+
+.update-button{
+    margin-right: 10px;
+}
+
+.hidden{
+    display: none;
+}
